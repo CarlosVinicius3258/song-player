@@ -1,46 +1,43 @@
 import React, { useState } from 'react';
 import AudioPlayer from '../../components/data-display/AudioPlayer/AudioPlayer';
 import MusicList from '../../components/data-display/MusicList/MusicList';
-import TimeLine from '../../components/inputs/TimeLine/TimeLine';
-import styles from './Index.module.css';
-// import { Container } from './styles';
 
 const songs = [
   {
     id: 1,
-    name: 'abc',
-    artist: '123',
+    name: 'Time is now',
+    artist: 'Independent Music Licensing Collective (IMLC)',
     duration: 95,
+    path: '../../../src/assets/songs/Time is Now.mp3',
   },
   {
     id: 2,
-    name: 'def',
-    artist: '456',
+    name: 'Crooked Putin Clown',
+    artist: 'John Lopker',
     duration: 80,
+    path: '../../../src/assets/songs/Crooked Putin Clown.mp3',
   },
   {
     id: 3,
-    name: 'ghi',
-    artist: '789',
+    name: '11 vampire hunter',
+    artist: 'kaleidoplasm',
     duration: 149,
+    path: 'https://freemusicarchive.org/track/saving-babys-party/download/',
   },
   {
     id: 4,
-    name: 'jkl',
-    artist: '101112',
+    name: 'Awake But Dreaming',
+    artist: 'Ketsa',
     duration: 100,
+    path: '../../../src/assets/songs/Awake But Dreaming.mp3',
   },
 ];
 const Index: React.FC = () => {
-  const [sliderSize, setSliderSize] = useState(0);
+  const [selectedMusic, setSelectedMusic] = useState({});
   return (
     <>
-      <MusicList onSelect={() => console.log('Cliquei')} songs={songs} selectedMusic={songs[0]} />
-
-      <div className={styles['player-container']}>
-        <AudioPlayer />
-        <TimeLine sliderSize={sliderSize} onChangeSize={setSliderSize} />
-      </div>
+      <MusicList onSelect={setSelectedMusic} songs={songs} selectedMusic={selectedMusic} />
+      <AudioPlayer song={selectedMusic} />
     </>
   );
 };
